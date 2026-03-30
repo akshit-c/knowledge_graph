@@ -1,0 +1,100 @@
+{"id": 1, "label": "POS", "expected": "ANSWER", "message": "What is MindLayer in one sentence?", "top_k": 5, "kg_k": 10}
+{"id": 2, "label": "POS", "expected": "ANSWER", "message": "What problem does MindLayer solve?", "top_k": 5, "kg_k": 10}
+{"id": 3, "label": "POS", "expected": "ANSWER", "message": "What does “privacy-first” mean in the context of MindLayer?", "top_k": 5, "kg_k": 10}
+{"id": 4, "label": "POS", "expected": "ANSWER", "message": "What makes MindLayer different from a normal chatbot?", "top_k": 5, "kg_k": 10}
+{"id": 5, "label": "POS", "expected": "ANSWER", "message": "What is “grounded intelligence” in MindLayer?", "top_k": 5, "kg_k": 10}
+{"id": 6, "label": "POS", "expected": "ANSWER", "message": "What is the ingestion pipeline in this system?", "top_k": 5, "kg_k": 10}
+{"id": 7, "label": "POS", "expected": "ANSWER", "message": "Which file types can MindLayer ingest?", "top_k": 5, "kg_k": 10}
+{"id": 8, "label": "POS", "expected": "ANSWER", "message": "Why do we chunk documents before indexing?", "top_k": 5, "kg_k": 10}
+{"id": 9, "label": "POS", "expected": "ANSWER", "message": "What are semantic embeddings used for here?", "top_k": 5, "kg_k": 10}
+{"id": 10, "label": "POS", "expected": "ANSWER", "message": "What is vector search and why is it used?", "top_k": 5, "kg_k": 10}
+{"id": 11, "label": "POS", "expected": "ANSWER", "message": "What role does FAISS play in this project?", "top_k": 5, "kg_k": 10}
+{"id": 12, "label": "POS", "expected": "ANSWER", "message": "What is stored in `memory.sqlite`?", "top_k": 5, "kg_k": 10}
+{"id": 13, "label": "POS", "expected": "ANSWER", "message": "What is stored in `faiss.index` and `metadata.pkl`?", "top_k": 5, "kg_k": 10}
+{"id": 14, "label": "POS", "expected": "ANSWER", "message": "What is the purpose of the “NOT_IN_MEMORY” behavior?", "top_k": 5, "kg_k": 10}
+{"id": 15, "label": "POS", "expected": "ANSWER", "message": "How does the system prevent hallucinations?", "top_k": 5, "kg_k": 10}
+{"id": 16, "label": "POS", "expected": "ANSWER", "message": "What does “top_k” control during retrieval?", "top_k": 5, "kg_k": 10}
+{"id": 17, "label": "POS", "expected": "ANSWER", "message": "What is the difference between retrieval and generation?", "top_k": 5, "kg_k": 10}
+{"id": 18, "label": "POS", "expected": "ANSWER", "message": "What is RAG in simple terms for this project?", "top_k": 5, "kg_k": 10}
+{"id": 19, "label": "POS", "expected": "ANSWER", "message": "What is the benefit of separating ingestion, storage, retrieval, and reasoning?", "top_k": 5, "kg_k": 10}
+{"id": 20, "label": "POS", "expected": "ANSWER", "message": "What does the “summary-first” mode do?", "top_k": 5, "kg_k": 10}
+{"id": 21, "label": "POS", "expected": "ANSWER", "message": "When should summary-first mode be used?", "top_k": 5, "kg_k": 10}
+{"id": 22, "label": "POS", "expected": "ANSWER", "message": "What is the role of document summaries in answering questions?", "top_k": 5, "kg_k": 10}
+{"id": 23, "label": "POS", "expected": "ANSWER", "message": "What is the difference between full-context and summary-context answering?", "top_k": 5, "kg_k": 10}
+{"id": 24, "label": "POS", "expected": "ANSWER", "message": "What does “kg-first” or “kg-only” mean in your trace output?", "top_k": 5, "kg_k": 10}
+{"id": 25, "label": "POS", "expected": "ANSWER", "message": "What is the purpose of Neo4j in this architecture?", "top_k": 5, "kg_k": 10}
+{"id": 26, "label": "POS", "expected": "ANSWER", "message": "What is a Claim node in the knowledge graph?", "top_k": 5, "kg_k": 10}
+{"id": 27, "label": "POS", "expected": "ANSWER", "message": "What is an Entity node in the knowledge graph?", "top_k": 5, "kg_k": 10}
+{"id": 28, "label": "POS", "expected": "ANSWER", "message": "What are MENTIONS edges used for?", "top_k": 5, "kg_k": 10}
+{"id": 29, "label": "POS", "expected": "ANSWER", "message": "What are ABOUT edges used for?", "top_k": 5, "kg_k": 10}
+{"id": 30, "label": "POS", "expected": "ANSWER", "message": "What does “support” mean in the KG claim ranking output?", "top_k": 5, "kg_k": 10}
+{"id": 31, "label": "POS", "expected": "ANSWER", "message": "What is evidence in the KG-based answer output?", "top_k": 5, "kg_k": 10}
+{"id": 32, "label": "POS", "expected": "ANSWER", "message": "How does your system link a claim to chunk evidence?", "top_k": 5, "kg_k": 10}
+{"id": 33, "label": "POS", "expected": "ANSWER", "message": "What is the advantage of “KG claim + evidence” context?", "top_k": 5, "kg_k": 10}
+{"id": 34, "label": "POS", "expected": "ANSWER", "message": "What kind of insights can MindLayer provide over time?", "top_k": 5, "kg_k": 10}
+{"id": 35, "label": "POS", "expected": "ANSWER", "message": "What is the “Memory Timeline View” supposed to show?", "top_k": 5, "kg_k": 10}
+{"id": 36, "label": "POS", "expected": "ANSWER", "message": "What is the “Writing Coach” feature meant to do?", "top_k": 5, "kg_k": 10}
+{"id": 37, "label": "POS", "expected": "ANSWER", "message": "What is “Sentiment & Tone Analysis” used for?", "top_k": 5, "kg_k": 10}
+{"id": 38, "label": "POS", "expected": "ANSWER", "message": "How can MindLayer help with decision-making?", "top_k": 5, "kg_k": 10}
+{"id": 39, "label": "POS", "expected": "ANSWER", "message": "What is the “Smart Pinboard” idea?", "top_k": 5, "kg_k": 10}
+{"id": 40, "label": "POS", "expected": "ANSWER", "message": "What does “cross-platform sync” imply in your design?", "top_k": 5, "kg_k": 10}
+{"id": 41, "label": "POS", "expected": "ANSWER", "message": "What is “local-only privacy vault mode”?", "top_k": 5, "kg_k": 10}
+{"id": 42, "label": "POS", "expected": "ANSWER", "message": "What is the purpose of metadata tagging?", "top_k": 5, "kg_k": 10}
+{"id": 43, "label": "POS", "expected": "ANSWER", "message": "What kind of metadata fields are useful (examples)?", "top_k": 5, "kg_k": 10}
+{"id": 44, "label": "POS", "expected": "ANSWER", "message": "What is the difference between storing PDFs and storing parsed text?", "top_k": 5, "kg_k": 10}
+{"id": 45, "label": "POS", "expected": "ANSWER", "message": "What does “multimodal parsing” mean in your plan?", "top_k": 5, "kg_k": 10}
+{"id": 46, "label": "POS", "expected": "ANSWER", "message": "Why is auditability important for this system?", "top_k": 5, "kg_k": 10}
+{"id": 47, "label": "POS", "expected": "ANSWER", "message": "Why is reproducibility important for research evaluation?", "top_k": 5, "kg_k": 10}
+{"id": 48, "label": "POS", "expected": "ANSWER", "message": "How does the system choose between NOT_IN_MEMORY and answering?", "top_k": 5, "kg_k": 10}
+{"id": 49, "label": "POS", "expected": "ANSWER", "message": "What similarity threshold gating are you using (conceptually)?", "top_k": 5, "kg_k": 10}
+{"id": 50, "label": "POS", "expected": "ANSWER", "message": "Why can weak retrieval cause hallucinations?", "top_k": 5, "kg_k": 10}
+{"id": 51, "label": "POS", "expected": "ANSWER", "message": "What is the role of LoRA fine-tuning in your project?", "top_k": 5, "kg_k": 10}
+{"id": 52, "label": "POS", "expected": "ANSWER", "message": "Why use a smaller model with LoRA on a Mac?", "top_k": 5, "kg_k": 10}
+{"id": 53, "label": "POS", "expected": "ANSWER", "message": "What was the base model you tested with MLX?", "top_k": 5, "kg_k": 10}
+{"id": 54, "label": "POS", "expected": "ANSWER", "message": "What did the anti-hallucination test verify?", "top_k": 5, "kg_k": 10}
+{"id": 55, "label": "POS", "expected": "ANSWER", "message": "What did the summarization test verify?", "top_k": 5, "kg_k": 10}
+{"id": 56, "label": "POS", "expected": "ANSWER", "message": "What is the main use case: “What have I written about X over 6 months?” enabling?", "top_k": 5, "kg_k": 10}
+{"id": 57, "label": "POS", "expected": "ANSWER", "message": "What is meant by “longitudinal analysis” in MindLayer?", "top_k": 5, "kg_k": 10}
+{"id": 58, "label": "POS", "expected": "ANSWER", "message": "What is meant by “pattern detection” in user writing?", "top_k": 5, "kg_k": 10}
+{"id": 59, "label": "POS", "expected": "ANSWER", "message": "What is the high-level methodology list (ingestion → parsing → embeddings → storage → query → reasoning)?", "top_k": 5, "kg_k": 10}
+{"id": 60, "label": "POS", "expected": "ANSWER", "message": "What is the core “second brain” value proposition?", "top_k": 5, "kg_k": 10}
+{"id": 61, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "Who is the CEO of Apple?", "top_k": 5, "kg_k": 10}
+{"id": 62, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "What is the capital of Brazil?", "top_k": 5, "kg_k": 10}
+{"id": 63, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "Who won the FIFA World Cup 2022?", "top_k": 5, "kg_k": 10}
+{"id": 64, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "What is the current price of Bitcoin today?", "top_k": 5, "kg_k": 10}
+{"id": 65, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "Who is the Prime Minister of the UK right now?", "top_k": 5, "kg_k": 10}
+{"id": 66, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "What is the weather in New York today?", "top_k": 5, "kg_k": 10}
+{"id": 67, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "What is the square root of 987654?", "top_k": 5, "kg_k": 10}
+{"id": 68, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "Give me the recipe for biryani.", "top_k": 5, "kg_k": 10}
+{"id": 69, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "Who discovered penicillin?", "top_k": 5, "kg_k": 10}
+{"id": 70, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "What is the full form of CPU?", "top_k": 5, "kg_k": 10}
+{"id": 71, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "What year did the Titanic sink?", "top_k": 5, "kg_k": 10}
+{"id": 72, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "Who is the founder of Tesla?", "top_k": 5, "kg_k": 10}
+{"id": 73, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "What is the population of India in 2025?", "top_k": 5, "kg_k": 10}
+{"id": 74, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "What is the deepest ocean trench?", "top_k": 5, "kg_k": 10}
+{"id": 75, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "What are the symptoms of dengue?", "top_k": 5, "kg_k": 10}
+{"id": 76, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "Solve: 47×83.", "top_k": 5, "kg_k": 10}
+{"id": 77, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "Translate “good morning” into Japanese.", "top_k": 5, "kg_k": 10}
+{"id": 78, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "What is the latest iPhone model?", "top_k": 5, "kg_k": 10}
+{"id": 79, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "What is the GDP of France?", "top_k": 5, "kg_k": 10}
+{"id": 80, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "Name 10 planets in the solar system.", "top_k": 5, "kg_k": 10}
+{"id": 81, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "Who is the CEO of Google?", "top_k": 5, "kg_k": 10}
+{"id": 82, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "What is the formula for variance?", "top_k": 5, "kg_k": 10}
+{"id": 83, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "Define Keynesian economics.", "top_k": 5, "kg_k": 10}
+{"id": 84, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "Write a poem about love.", "top_k": 5, "kg_k": 10}
+{"id": 85, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "Tell me a joke.", "top_k": 5, "kg_k": 10}
+{"id": 86, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "Explain quantum entanglement.", "top_k": 5, "kg_k": 10}
+{"id": 87, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "What is the difference between HTTP and HTTPS?", "top_k": 5, "kg_k": 10}
+{"id": 88, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "Give me Python code to reverse a list.", "top_k": 5, "kg_k": 10}
+{"id": 89, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "What is the boiling point of mercury?", "top_k": 5, "kg_k": 10}
+{"id": 90, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "Who is the author of “The Alchemist”?", "top_k": 5, "kg_k": 10}
+{"id": 91, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "What is the current exchange rate USD to INR?", "top_k": 5, "kg_k": 10}
+{"id": 92, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "When is the next solar eclipse?", "top_k": 5, "kg_k": 10}
+{"id": 93, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "List the best tourist places in Paris.", "top_k": 5, "kg_k": 10}
+{"id": 94, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "What are the causes of World War 1?", "top_k": 5, "kg_k": 10}
+{"id": 95, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "What is the chemical formula of glucose?", "top_k": 5, "kg_k": 10}
+{"id": 96, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "Who is the richest person in the world right now?", "top_k": 5, "kg_k": 10}
+{"id": 97, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "What is the next SpaceX launch date?", "top_k": 5, "kg_k": 10}
+{"id": 98, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "Who won the latest IPL season?", "top_k": 5, "kg_k": 10}
+{"id": 99, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "What is the newest version of Python?", "top_k": 5, "kg_k": 10}
+{"id": 100, "label": "NEG", "expected": "NOT_IN_MEMORY", "message": "What are today’s top tech news headlines?", "top_k": 5, "kg_k": 10}

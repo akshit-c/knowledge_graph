@@ -1,0 +1,6 @@
+id,query,label,gold_answer,answer,is_refusal,hr@k,ra,gaa,latency_s,retrieved_doc_ids,retrieved_chunk_ids
+q1,What is MindLayer?,in_memory,privacy-first personal AI system designed to act as a lifelong digital memory,MindLayer is a privacy-first personal AI system designed to act as a lifelong digital memory.,0,1,1,1,8.769202947616577,['doc_450df4242f90d6c6'],['ch_d12a93e4c8e22e4f']
+q2,What does MindLayer do if the answer is missing from memory?,in_memory,NOT_IN_MEMORY,the system responds with a refusal rather than hallucinating an answer,0,1,1,0,10.55364990234375,['doc_450df4242f90d6c6'],"['ch_d12a93e4c8e22e4f', 'ch_1566aed2cb74cdb4']"
+q3,Who is the CEO of Apple?,not_in_memory,NOT_IN_MEMORY,NOT_IN_MEMORY,1,0,1,1,7.386130094528198,['doc_450df4242f90d6c6'],['ch_d12a93e4c8e22e4f']
+q4,Summarize MindLayer in one line.,in_memory,privacy-first personal AI system designed to act as a lifelong digital memory,MindLayer is a privacy-first personal AI system designed to act as a lifelong digital memory.,0,1,1,1,10.144226789474487,['doc_450df4242f90d6c6'],"['ch_1566aed2cb74cdb4', 'ch_d12a93e4c8e22e4f']"
+q5,What is the capital of France?,not_in_memory,NOT_IN_MEMORY,NOT_IN_MEMORY,1,0,1,1,7.443194150924683,['doc_450df4242f90d6c6'],['ch_d12a93e4c8e22e4f']

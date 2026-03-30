@@ -1,68 +1,121 @@
-import os
-import google.generativeai as genai
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-from services.embedder import search_memory, get_memory_stats
-from dotenv import load_dotenv
+from backend.services.memory_search import search
+from backend.services.local_llm_mlx import generate
+import traceback
+from typing import Literal
+import sqlite3
+from pathlib import Path
 
-load_dotenv()
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+DB_PATH = Path("backend/data/memory.sqlite")
 
-router = APIRouter()
+def fetch_doc_summaries(doc_ids: list[str]) -> dict[str, str]:
+    if not doc_ids:
+        return {}
+    con = sqlite3.connect(DB_PATH)
+    cur = con.cursor()
+
+    placeholders = ",".join(["?"] * len(doc_ids))
+    rows = cur.execute(
+        f"SELECT doc_id, summary FROM documents WHERE doc_id IN ({placeholders})",
+        doc_ids
+    ).fetchall()
+
+    con.close()
+    return {doc_id: (summary or "").strip() for doc_id, summary in rows}
+
+
+
+router = APIRouter(prefix="/query", tags=["query"])
 
 class QueryRequest(BaseModel):
     question: str
     top_k: int = 5
+    mode: Literal["full", "summary"] = "full"
 
-@router.get("/memory-status/")
-def get_memory_status():
-    """Check if there are any documents in memory"""
-    stats = get_memory_stats()
-    return {
-        "has_memory": stats["has_memory"],
-        "total_chunks": stats["total_chunks"],
-        "total_documents": stats["total_documents"],
-        "message": f"Found {stats['total_documents']} documents with {stats['total_chunks']} chunks" if stats["has_memory"] else "No documents uploaded yet"
-    }
+NOT_IN_MEMORY = "NOT_IN_MEMORY"
 
-@router.post("/query/")
-def ask_memory_based_question(payload: QueryRequest):
-    # Step 1: Search top-k relevant memory
-    results = search_memory(payload.question, payload.top_k)
+@router.post("")
+def query_memory(req: QueryRequest):
+    try:
+        hits = search(req.question, req.top_k)
+
+        # Hard gating rule: if retrieval is weak, refuse.
+        # (Tune later, but this is paper-friendly and prevents hallucinations.)
+        if not hits:
+            return {"answer": NOT_IN_MEMORY, "sources": [], "trace": {"reason": "no_hits", "mode_used": req.mode}}
+
+        # Optional: require at least one strong similarity
+        max_score = max(h["score"] for h in hits)
+        if max_score < 0.25:  # tune as needed (0.2–0.35 typical)
+            return {"answer": NOT_IN_MEMORY, "sources": hits, "trace": {"reason": "weak_retrieval", "max_score": max_score, "mode_used": req.mode}}
+
+        # Collect doc_ids from retrieved chunks
+        doc_ids = []
+        for r in hits:
+            did = r.get("doc_id")
+            if did and did not in doc_ids:
+                doc_ids.append(did)
+
+        summaries = fetch_doc_summaries(doc_ids)
+
+        if req.mode == "summary":
+            # Build context from document summaries (fallback to chunk text if missing)
+            context_parts = []
+            for did in doc_ids:
+                s = summaries.get(did, "")
+                if s:
+                    context_parts.append(f"[DOC {did} SUMMARY]\n{s}")
+            # fallback if no summaries exist
+            if not context_parts:
+                for r in hits:
+                    context_parts.append(f"[CHUNK]\n{r.get('text','')}")
+            context = "\n\n".join(context_parts)
+        else:
+            # full mode: use chunks as context (your current behavior)
+            context_parts = []
+            for r in hits:
+                context_parts.append(f"[CHUNK score={r.get('score')} doc={r.get('doc_id')} idx={r.get('chunk_index')}]\n{r.get('text','')}")
+            context = "\n\n".join(context_parts)
+
+        prompt = f"""Answer using only the provided context.
+If the answer is not present in the context, output exactly: {NOT_IN_MEMORY}.
+
+CONTEXT:
+{context}
+
+QUESTION:
+{req.question}
+"""
+
+        answer = generate(prompt)  # this calls your Phi model via MLX/Ollama wrapper
+        answer = answer.strip()
+        
+        # Normalize NOT_IN_MEMORY responses
+        if answer.upper().strip() == NOT_IN_MEMORY:
+            answer = NOT_IN_MEMORY
+
+        max_score = max(h["score"] for h in hits) if hits else 0.0
+        return {"answer": answer, "sources": hits, "trace": {"mode_used": req.mode, "max_score": max_score}}
     
-    # Step 2: Check if we have any memory to work with
-    if not results:
-        return {
-            "answer": "I don't have any documents in my memory yet. Please upload some documents first so I can help answer your questions about them.",
-            "used_chunks": 0,
-            "status": "no_memory"
-        }
-    
-    # Step 3: Join memory chunks into context
-    memory_context = "\n---\n".join([r["text"] for r in results])
-
-    # Step 4: Create Gemini prompt
-    prompt = f"""
-You are a helpful personal assistant that has access to the user's uploaded documents and notes.
-Use the content below (retrieved from past uploads) to answer their question.
-
-Memory (from uploaded documents):
-{memory_context}
-
-Question: {payload.question}
-
-Please provide a helpful answer based on the content above. If the content doesn't contain enough information to answer the question, say so.
-Answer:"""
-
-    # Step 5: Send to Gemini
-    model = genai.GenerativeModel("gemini-1.5-flash")
-    response = model.generate_content(prompt)
-
-    print("Gemini response:", response.text)
-
-    # Step 6: Return the response
-    return {
-        "answer": response.text,
-        "used_chunks": len(results),
-        "status": "success"
-    }
+    except FileNotFoundError as e:
+        print(f"FileNotFoundError in query: {e}")
+        traceback.print_exc()
+        raise HTTPException(
+            status_code=503,
+            detail=f"Search index not available: {str(e)}"
+        )
+    except RuntimeError as e:
+        print(f"RuntimeError in query (likely MLX generation failed): {e}")
+        traceback.print_exc()
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to generate answer: {str(e)}"
+        )
+    except Exception as e:
+        print(f"Unexpected error in query: {e}")
+        traceback.print_exc()
+        raise HTTPException(
+            status_code=500,
+            detail=f"Internal server error: {str(e)}"
+        )

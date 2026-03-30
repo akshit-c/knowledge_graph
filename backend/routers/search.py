@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
-from services.embedder import search_memory
+from backend.services.embedder import search_memory
 
 router = APIRouter()
 

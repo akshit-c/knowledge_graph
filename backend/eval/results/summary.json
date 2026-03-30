@@ -1,0 +1,14 @@
+{
+  "N": 5,
+  "HR@k_mean": 0.6,
+  "RA_mean": 1.0,
+  "GAA_mean": 0.8,
+  "Latency_mean_s": 8.859280776977538,
+  "Latency_p95_s": 10.471765279769897,
+  "HR@k_CI95_low": 0.2,
+  "HR@k_CI95_high": 1.0,
+  "RA_CI95_low": 1.0,
+  "RA_CI95_high": 1.0,
+  "GAA_CI95_low": 0.4,
+  "GAA_CI95_high": 1.0
+}

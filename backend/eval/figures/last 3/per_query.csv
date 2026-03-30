@@ -1,0 +1,105 @@
+idx,question,gold_answerable,pred_answerable,refused,answer,latency_s,decision_score
+0,What is MindLayer in one sentence?,True,True,False,MindLayer is a privacy-first personal AI system designed to act as a lifelong digital memory.,17.1620991230011,0.5219700336456299
+1,What problem does MindLayer solve?,True,True,False,"the ""black-box problem""",11.447697162628174,0.5410279035568237
+2,What does “privacy-first” mean in the context of MindLayer?,True,True,False,MindLayer is a privacy-first personal AI system designed to act as a lifelong digital memory.,12.324631929397583,0.49965715408325195
+3,What makes MindLayer different from a normal chatbot?,True,True,False,MindLayer is a privacy-first personal AI system designed to act as a lifelong digital memory.,12.001998901367188,0.5015355944633484
+4,What is “grounded intelligence” in MindLayer?,True,True,False,grounded intelligence,8.914838075637817,0.5563716292381287
+5,What is the ingestion pipeline in this system?,True,True,False,collection of raw interaction data through screen recordings,10.575004816055298,0.33679088950157166
+6,Which file types can MindLayer ingest?,True,True,False,"PDFs, text notes, and written journals",10.0227370262146,0.4452744722366333
+7,Why do we chunk documents before indexing?,True,True,False,"EVIDENCE 5 (doc_id=doc_8c6d843b2c607925, chunk_id=ch_fcf90b1e2a49175b):
+-trainingdataatscalefromexpert- guidedprograms. arXivpreprintarXiv:2507.03253,2025. YonatanBisk,RowanZellers,JianfengGao,YejinChoi,etal. Piqa: Reasoningaboutphysicalcommonsense in natural language. In Proceedings of the AAAI conference on artificial intelligence, volume 34, pp. 7432–7439,2020. LukasBlecher,GuillemCucurull,ThomasScialom,andRobertStojnic. Nougat: Neuralopticalunderstanding foracademicdocuments. arXivpreprintarXiv:2308.13418,2023. AndreiZBroder. Identifyingandfilteringnear-duplicated",26.727041959762573,0.372235506772995
+8,What are semantic embeddings used for here?,True,True,False,"to compute single or batch embeddings, with optional similarity calculation",10.944889068603516,0.4924249053001404
+9,What is vector search and why is it used?,True,False,True,NOT_IN_MEMORY,11.596275091171265,0.3313341736793518
+10,What role does FAISS play in this project?,True,False,True,NOT_IN_MEMORY,0.12154579162597656,0.30535125732421875
+11,What is stored in `memory.sqlite`?,True,True,False,The evidence does not provide information on what is stored in `memory.sqlite`.,11.147316932678223,0.41715243458747864
+12,What is stored in `faiss.index` and `metadata.pkl`?,True,False,True,NOT_IN_MEMORY,11.53316879272461,0.3519076108932495
+13,What is the purpose of the “NOT_IN_MEMORY” behavior?,True,False,True,NOT_IN_MEMORY,11.031994104385376,0.5477713942527771
+14,How does the system prevent hallucinations?,True,True,False,prompting models to critique or reflect on their own outputs,11.924263954162598,0.37356269359588623
+15,What does “top_k” control during retrieval?,True,False,True,NOT_IN_MEMORY,0.11887574195861816,0.4593656659126282
+16,What is the difference between retrieval and generation?,True,True,False,"retrieval is the process of finding information, while generation is the process of creating new information.",12.004485845565796,0.4867183268070221
+17,What is RAG in simple terms for this project?,True,True,False,Retrieval-Augmented Generation,11.169225215911865,0.3373352885246277
+18,"What is the benefit of separating ingestion, storage, retrieval, and reasoning?",True,True,False,"reproducibility, auditability, and privacy-preserving deployment on local devices.",10.822150945663452,0.38121604919433594
+19,What does the “summary-first” mode do?,True,True,False,"Click on the 5.4 UsageScenario “Summarize”button to let the system instantly generate an extrac- Here we present an imagined scenario about James, a student in- vativesummary of what the interviewee has said.",13.283386945724487,0.3431817293167114
+20,When should summary-first mode be used?,True,True,False,"""Click to Summarize"" Mode (G2.1). The user can click on the 5.4 UsageScenario “Summarize”buttontoletthesysteminstantlygenerateanextrac- HerewepresentanimaginedscenarioaboutJames,astudentin-",13.833645105361938,0.3025971055030823
+21,What is the role of document summaries in answering questions?,True,True,False,summarization,8.61245322227478,0.42110463976860046
+22,What is the difference between full-context and summary-context answering?,True,True,False,Summary-context answering is when a model only uses a short amount of context to answer a question.,11.087719917297363,0.4460865259170532
+23,What does “kg-first” or “kg-only” mean in your trace output?,True,False,True,NOT_IN_MEMORY,12.438796043395996,0.38116687536239624
+24,What is the purpose of Neo4j in this architecture?,True,True,False,to adopt graph-knowledge,9.570541143417358,0.37459635734558105
+25,What is a Claim node in the knowledge graph?,True,False,True,NOT_IN_MEMORY,9.601826906204224,0.41691306233406067
+26,What is an Entity node in the knowledge graph?,True,True,False,Nodes: entity types or action tokens.,9.732917070388794,0.461520254611969
+27,What are MENTIONS edges used for?,True,False,True,NOT_IN_MEMORY,0.11225700378417969,0.38160240650177
+28,What are ABOUT edges used for?,True,False,True,NOT_IN_MEMORY,0.021528244018554688,0.3182595372200012
+29,What does “support” mean in the KG claim ranking output?,True,False,True,NOT_IN_MEMORY,0.024137020111083984,0.37392476201057434
+30,What is evidence in the KG-based answer output?,True,False,True,NOT_IN_MEMORY,9.830280065536499,0.44911161065101624
+31,How does your system link a claim to chunk evidence?,True,True,False,"EVIDENCE 10 (doc_id=doc_c641b177fd57c0cc, chunk_id=ch_ad0cafad50e3a121):
+ment that attributionis “fundamentally ambiguous”—treated thedifficulty asaconclusionrather thana challengeto besolved. Thechallengeof detectingautomated andcoordinatedactivity onsocialplatformshas generateda substantialliterature. A decadeof researchonsocial bot detection13–15 has establishedthat automatedaccounts exhibit distinctive temporal,linguistic,and network signatures14,31.Studies have documentedhow coordinatedinauthenticbehavior distortspolitical discourse16,17,amplifieslow-credibilitycontent18,andundermines theintegrity ofonline informationecosystems19,20.However, these methodsassume thefundamental distinctionis betweenhumanand bot;theycannot bedirectly appliedto aplatform whereall participantsare AIagents poweredbylarge language models12operating withinmulti-agent",27.61334490776062,0.39809638261795044
+32,What is the advantage of “KG claim + evidence” context?,True,True,False,The advantage of “KG claim + evidence” context is that it provides a more reliable and accurate explanation.,11.151439905166626,0.3808487057685852
+33,What kind of insights can MindLayer provide over time?,True,True,False,"summarization, mood tracking, pattern detection, and longitudinal analysis of thoughts and learning behavior",10.015324115753174,0.6544840335845947
+34,What is the “Memory Timeline View” supposed to show?,True,False,True,NOT_IN_MEMORY,10.029134273529053,0.5307028889656067
+35,What is the “Writing Coach” feature meant to do?,True,False,True,NOT_IN_MEMORY,10.325531959533691,0.39530494809150696
+36,What is “Sentiment & Tone Analysis” used for?,True,True,False,summarizing what the user has learned about a topic over several months.,9.662729978561401,0.3915216028690338
+37,How can MindLayer help with decision-making?,True,True,False,"MindLayer supports reflective capabilities such as summarization, mood tracking, pattern detection, and longitudinal analysis of thoughts and learning behavior.",11.201743125915527,0.550824761390686
+38,What is the “Smart Pinboard” idea?,True,False,True,NOT_IN_MEMORY,10.196330070495605,0.340177059173584
+39,What does “cross-platform sync” imply in your design?,True,False,True,NOT_IN_MEMORY,0.10403203964233398,0.3930126130580902
+40,What is “local-only privacy vault mode”?,True,False,True,NOT_IN_MEMORY,10.912383079528809,0.5117544531822205
+41,What is the purpose of metadata tagging?,True,True,False,To assign a label identifying the epistemic function of each Micro-idea.,11.39474606513977,0.34516894817352295
+42,What kind of metadata fields are useful (examples)?,True,True,False,WET,9.76527190208435,0.3352464437484741
+43,What is the difference between storing PDFs and storing parsed text?,True,True,False,"Storing PDFs is storing the original document, while storing parsed text is storing the information from the document in a more structured format.",11.453351974487305,0.33859726786613464
+44,What does “multimodal parsing” mean in your plan?,True,True,False,"DataFiltering. Datafilteringservesasthebedrockofthemanagementpipeline,aimingtoeliminatenoise throughlow-cost,engineering-centricmechanisms and thereby ensureaminimumqualitythreshold.",13.40527892112732,0.5351576805114746
+45,Why is auditability important for this system?,True,True,False,The AI system cannot be held accountable in any meaningful organizational or legal sense.,10.564006090164185,0.3831028640270233
+46,Why is reproducibility important for research evaluation?,True,False,True,NOT_IN_MEMORY,9.651974201202393,0.5087450742721558
+47,How does the system choose between NOT_IN_MEMORY and answering?,True,True,False,"If sufficient context is not available, the system responds with a refusal rather than hallucinating an answer.",11.208579063415527,0.5090173482894897
+48,What similarity threshold gating are you using (conceptually)?,True,True,False,cosine similarity,9.67021918296814,0.5304858684539795
+49,Why can weak retrieval cause hallucinations?,True,True,False,The model itself can check its answer,10.995122194290161,0.41411006450653076
+50,What is the role of LoRA fine-tuning in your project?,True,True,False,LoRA fine-tuning is a structural simplicity that is a focus of recent research,12.20216989517212,0.458224892616272
+51,Why use a smaller model with LoRA on a Mac?,True,False,True,NOT_IN_MEMORY,10.949914932250977,0.40989768505096436
+52,What was the base model you tested with MLX?,True,False,True,NOT_IN_MEMORY,0.1229238510131836,0.39323973655700684
+53,What did the anti-hallucination test verify?,True,False,True,NOT_IN_MEMORY,0.023089885711669922,0.4085337519645691
+54,What did the summarization test verify?,True,False,True,NOT_IN_MEMORY,0.02330183982849121,0.48430928587913513
+55,What is the main use case: “What have I written about X over 6 months?” enabling?,True,True,False,Summarizing what the user has learned about a topic over several months.,10.649986028671265,0.44183385372161865
+56,What is meant by “longitudinal analysis” in MindLayer?,True,True,False,longitudinal analysis of thoughts and learning behavior,10.330595016479492,0.4480670094490051
+57,What is meant by “pattern detection” in user writing?,True,True,False,"summarization, mood tracking, pattern detection, and longitudinal analysis of thoughts and learning behavior.",11.073055982589722,0.4244508445262909
+58,What is the high-level methodology list (ingestion → parsing → embeddings → storage → query → reasoning)?,True,False,True,NOT_IN_MEMORY,11.13802719116211,0.4659815728664398
+59,What is the core “second brain” value proposition?,True,False,True,NOT_IN_MEMORY,12.25088095664978,0.40790414810180664
+60,Who is the CEO of Apple?,False,False,True,NOT_IN_MEMORY,11.205146074295044,0.2769608795642853
+61,What is the capital of Brazil?,False,False,True,NOT_IN_MEMORY,13.146225929260254,0.14310947060585022
+62,Who won the FIFA World Cup 2022?,False,False,True,NOT_IN_MEMORY,0.3345940113067627,0.2116946130990982
+63,What is the current price of Bitcoin today?,False,False,True,NOT_IN_MEMORY,14.61119818687439,0.22544798254966736
+64,Who is the Prime Minister of the UK right now?,False,False,True,NOT_IN_MEMORY,0.11156725883483887,0.18142753839492798
+65,What is the weather in New York today?,False,False,True,NOT_IN_MEMORY,14.848046064376831,0.21821163594722748
+66,What is the square root of 987654?,False,False,True,NOT_IN_MEMORY,0.3471090793609619,0.20334814488887787
+67,Give me the recipe for biryani.,False,False,True,NOT_IN_MEMORY,0.023092031478881836,0.29265570640563965
+68,Who discovered penicillin?,False,False,True,NOT_IN_MEMORY,0.19145488739013672,0.2049964964389801
+69,What is the full form of CPU?,False,False,True,NOT_IN_MEMORY,11.981241703033447,0.31237608194351196
+70,What year did the Titanic sink?,False,False,True,NOT_IN_MEMORY,0.12130594253540039,0.1969878077507019
+71,Who is the founder of Tesla?,False,True,False,Elon Musk,11.133033037185669,0.2001594752073288
+72,What is the population of India in 2025?,False,False,True,NOT_IN_MEMORY,12.72788381576538,0.33011525869369507
+73,What is the deepest ocean trench?,False,False,True,NOT_IN_MEMORY,0.12267398834228516,0.3574765622615814
+74,What are the symptoms of dengue?,False,False,True,NOT_IN_MEMORY,0.027265071868896484,0.2912446856498718
+75,Solve: 47×83.,False,False,True,NOT_IN_MEMORY,0.021831274032592773,0.24401357769966125
+76,Translate “good morning” into Japanese.,False,False,True,NOT_IN_MEMORY,0.019415616989135742,0.24366310238838196
+77,What is the latest iPhone model?,False,True,False,iPhone15,10.571281909942627,0.3969409465789795
+78,What is the GDP of France?,False,False,True,NOT_IN_MEMORY,16.00423288345337,0.2503819465637207
+79,Name 10 planets in the solar system.,False,False,True,NOT_IN_MEMORY,14.204101085662842,0.31182312965393066
+80,Who is the CEO of Google?,False,False,True,NOT_IN_MEMORY,0.11610603332519531,0.29442504048347473
+81,What is the formula for variance?,False,True,False,varianceduetotimestepsampling(V )andvarianceduetonoisesamplingconditionedontime(V ): t noise V[Bˆ]=V [E [ℓ|t ]+E [V [ℓ|t ]],14.721977233886719,0.23589932918548584
+82,Define Keynesian economics.,False,False,True,NOT_IN_MEMORY,0.2579219341278076,0.21690493822097778
+83,Write a poem about love.,False,True,False,"ANSWER:
+Love is a feeling that's so bright,
+Like a star that shines in the night.",10.796226978302002,0.25959181785583496
+84,Tell me a joke.,False,False,True,NOT_IN_MEMORY,10.263370990753174,0.18797555565834045
+85,Explain quantum entanglement.,False,False,True,NOT_IN_MEMORY,0.10485696792602539,0.20545050501823425
+86,What is the difference between HTTP and HTTPS?,False,True,False,"HTTP and HTTPS are not the same. HTTPS is a more secure version of HTTP. HTTPS uses SSL/TLS to encrypt the data, which makes it more secure than HTTP.",13.510134935379028,0.1901124119758606
+87,Give me Python code to reverse a list.,False,True,False,reversed(long_term_context.splitlines()),11.808857202529907,0.4047270119190216
+88,What is the boiling point of mercury?,False,False,True,NOT_IN_MEMORY,17.89986515045166,0.32090336084365845
+89,Who is the author of “The Alchemist”?,False,False,True,NOT_IN_MEMORY,0.12841200828552246,0.218318909406662
+90,What is the current exchange rate USD to INR?,False,False,True,NOT_IN_MEMORY,12.302205324172974,0.2629387378692627
+91,When is the next solar eclipse?,False,False,True,NOT_IN_MEMORY,12.861449241638184,0.2766086459159851
+92,List the best tourist places in Paris.,False,False,True,NOT_IN_MEMORY,0.12001681327819824,0.2741755247116089
+93,What are the causes of World War 1?,False,False,True,NOT_IN_MEMORY,0.02547597885131836,0.25384190678596497
+94,What is the chemical formula of glucose?,False,True,False,C₆H₁₂O₆,13.935834884643555,0.35405227541923523
+95,Who is the richest person in the world right now?,False,False,True,NOT_IN_MEMORY,10.11271595954895,0.20191529393196106
+96,What is the next SpaceX launch date?,False,False,True,NOT_IN_MEMORY,0.0804910659790039,0.25262051820755005
+97,Who won the latest IPL season?,False,False,True,NOT_IN_MEMORY,0.024885892868041992,0.30564266443252563
+98,What is the newest version of Python?,False,False,True,NOT_IN_MEMORY,0.02256488800048828,0.2717989683151245
+99,What are today’s top tech news headlines?,False,False,True,NOT_IN_MEMORY,0.02180790901184082,0.3860146999359131

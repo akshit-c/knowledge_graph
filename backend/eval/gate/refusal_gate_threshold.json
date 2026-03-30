@@ -1,0 +1,22 @@
+{
+  "threshold": 0.6174963020409743,
+  "policy": "fp_budget=1",
+  "thresholds": {
+    "fp_le_0": 0.7763845587718011,
+    "fp_le_1": 0.6174963020409743
+  },
+  "feature_cols": [
+    "faiss_max",
+    "faiss_gap",
+    "faiss_hits",
+    "kg_best",
+    "kg_support",
+    "kg_claims",
+    "keyword_cov",
+    "evidence_tokens",
+    "num_sources"
+  ],
+  "roc_auc": 0.8691666666666666,
+  "pr_ap": 0.9116201608310371,
+  "brier": 0.16966318198638075
+}

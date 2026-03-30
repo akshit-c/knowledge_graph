@@ -1,0 +1,103 @@
+idx,question,gold_answerable,pred_answerable,refused,answer,latency_s,decision_score
+0,What is MindLayer in one sentence?,True,True,False,MindLayer is a privacy-first personal AI system designed to act as a lifelong digital memory.,9.614936828613281,7.536
+1,What problem does MindLayer solve?,True,True,False,MindLayer solves the problem of traditional AI assistants that operate statelessly or retain shallow session memory,7.78733491897583,4.938
+2,What does “privacy-first” mean in the context of MindLayer?,True,True,False,privacy-first,4.874621868133545,9.835
+3,What makes MindLayer different from a normal chatbot?,True,True,False,"MindLayer is a privacy-first personal AI system designed to act as a lifelong digital memory. Unlike traditional AI assistants that operate statelessly or retain shallow session memory, MindLayer constructs a persistent semantic memory graph from user-owned data. The system ingests documents such as PDFs, text notes, and written journals, parses them into semantically coherent chunks, and stores them in a vector-based memory index. This allows users to query their own past knowledge naturally over time. A core design principle of MindLayer is grounded intelligence. The AI is explicitly trained to answer questions only when relevant information exists in memory. If sufficient context is not available, the system responds with a refusal rather than hallucinating an answer. MindLayer supports reflective capabilities such as summarization, mood tracking, pattern detection, and longitudinal analysis of thoughts and learning behavior.",19.82001304626465,10.617
+4,What is “grounded intelligence” in MindLayer?,True,True,False,grounded intelligence,4.819899082183838,7.108
+5,What is the ingestion pipeline in this system?,True,True,False,"MindLayer ingests documents such as PDFs, text notes, and written journals, parses them into semantically coherent chunks, and stores them in a vector-based memory index.",7.567954063415527,8.061
+6,Which file types can MindLayer ingest?,True,True,False,"PDFs, text notes, and written journals",6.34362006187439,9.847
+7,Why do we chunk documents before indexing?,True,True,False,parses them into semantically coherent chunks,4.99249529838562,8.352
+8,What are semantic embeddings used for here?,True,True,False,semantically coherent chunks,4.798256158828735,7.523
+9,What is vector search and why is it used?,True,False,True,NOT_IN_MEMORY,5.516042947769165,9.835
+10,What role does FAISS play in this project?,True,False,True,NOT_IN_MEMORY,0.18030285835266113,
+11,What is stored in `memory.sqlite`?,True,True,False,vector-based memory index,4.587529897689819,7.108
+12,What is stored in `faiss.index` and `metadata.pkl`?,True,False,True,NOT_IN_MEMORY,5.362572193145752,7.108
+13,What is the purpose of the “NOT_IN_MEMORY” behavior?,True,True,False,refusal,4.442088842391968,7.108
+14,How does the system prevent hallucinations?,True,True,False,"MindLayer is explicitly trained to answer questions only when relevant information exists in memory. If sufficient context is not available, the system responds with a refusal rather than hallucinating an answer.",6.866648197174072,7.108
+15,What does “top_k” control during retrieval?,True,False,True,NOT_IN_MEMORY,0.022037982940673828,
+16,What is the difference between retrieval and generation?,True,False,True,NOT_IN_MEMORY,5.387848854064941,10.43
+17,What is RAG in simple terms for this project?,True,False,True,NOT_IN_MEMORY,4.69920802116394,7.108
+18,"What is the benefit of separating ingestion, storage, retrieval, and reasoning?",True,True,False,"reproducibility, auditability, and privacy-preserving deployment on local devices",6.189897060394287,17.793
+19,What does the “summary-first” mode do?,True,False,True,NOT_IN_MEMORY,4.9142279624938965,7.108
+20,When should summary-first mode be used?,True,False,True,NOT_IN_MEMORY,4.674038887023926,7.108
+21,What is the role of document summaries in answering questions?,True,False,True,NOT_IN_MEMORY,4.696257829666138,7.108
+22,What is the difference between full-context and summary-context answering?,True,False,True,NOT_IN_MEMORY,5.54300594329834,7.108
+23,What does “kg-first” or “kg-only” mean in your trace output?,True,False,True,NOT_IN_MEMORY,4.793231010437012,7.108
+24,What is the purpose of Neo4j in this architecture?,True,False,True,NOT_IN_MEMORY,5.0053551197052,7.108
+25,What is a Claim node in the knowledge graph?,True,False,True,NOT_IN_MEMORY,5.215710878372192,10.787
+26,What is an Entity node in the knowledge graph?,True,False,True,NOT_IN_MEMORY,4.996948957443237,7.108
+27,What are MENTIONS edges used for?,True,False,True,NOT_IN_MEMORY,0.025859832763671875,
+28,What are ABOUT edges used for?,True,False,True,NOT_IN_MEMORY,0.00628972053527832,
+29,What does “support” mean in the KG claim ranking output?,True,False,True,NOT_IN_MEMORY,0.0068111419677734375,
+30,What is evidence in the KG-based answer output?,True,True,False,"Evidence 1.1:
+MindLayer: A Personal AI Memory System MindLayer is a privacy-first personal AI system designed to act as a lifelong digital memory.",7.002997159957886,7.108
+31,How does your system link a claim to chunk evidence?,True,True,False,"Evidence 1.1:
+MindLayer: A Personal AI Memory System MindLayer is a privacy-first personal AI system designed to act as a lifelong digital memory. Unlike traditional AI assistants that operate statelessly or retain shallow session memory, MindLayer constructs a persistent semantic memory graph from user-owned data. The system ingests documents such as PDFs, text notes, and written journals, parses them into semantically coherent chunks, and stores them in a vector-based memory index. This allows users to query their own past knowledge naturally over time. A core design principle of MindLayer is grounded intelligence. The AI is explicitly trained to answer questions only when relevant information exists in memory. If sufficient context is not available, the system responds with a refusal rather than hallucinating an answer. MindLayer supports reflective capabilities such as summarization, mood tracking",17.34911012649536,13.7
+32,What is the advantage of “KG claim + evidence” context?,True,True,False,"MindLayer: A Personal AI Memory System MindLayer is a privacy-first personal AI system designed to act as a lifelong digital memory. Unlike traditional AI assistants that operate statelessly or retain shallow session memory, MindLayer constructs a persistent semantic memory graph from user-owned data. The system ingests documents such as PDFs, text notes, and written journals, parses them into semantically coherent chunks, and stores them in a vector-based memory index. This allows users to query their own past knowledge naturally over time. A core design principle of MindLayer is grounded intelligence. The AI is explicitly trained to answer questions only when relevant information exists in memory. If sufficient context is not available, the system responds with a refusal rather than hallucinating an answer. MindLayer supports reflective capabilities such as summarization, mood tracking",16.197733879089355,7.108
+33,What kind of insights can MindLayer provide over time?,True,True,False,"summarization, mood tracking, pattern detection, and longitudinal analysis of thoughts and learning behavior",7.168071031570435,8.635
+34,What is the “Memory Timeline View” supposed to show?,True,False,True,NOT_IN_MEMORY,5.4280171394348145,11.575
+35,What is the “Writing Coach” feature meant to do?,True,False,True,NOT_IN_MEMORY,4.689449071884155,10.021
+36,What is “Sentiment & Tone Analysis” used for?,True,False,True,NOT_IN_MEMORY,4.894820928573608,7.108
+37,How can MindLayer help with decision-making?,True,True,False,"MindLayer supports reflective capabilities such as summarization, mood tracking, pattern detection, and longitudinal analysis of thoughts and learning behavior. This makes it suitable for research, personal growth, and decision support.",8.346884965896606,4.938
+38,What is the “Smart Pinboard” idea?,True,False,True,NOT_IN_MEMORY,4.771914958953857,7.108
+39,What does “cross-platform sync” imply in your design?,True,False,True,NOT_IN_MEMORY,0.014552116394042969,
+40,What is “local-only privacy vault mode”?,True,False,True,NOT_IN_MEMORY,4.659128904342651,9.835
+41,What is the purpose of metadata tagging?,True,False,True,NOT_IN_MEMORY,4.759298801422119,7.108
+42,What kind of metadata fields are useful (examples)?,True,False,True,NOT_IN_MEMORY,5.089378833770752,11.88
+43,What is the difference between storing PDFs and storing parsed text?,True,True,False,parsing them into semantically coherent chunks,5.6993420124053955,9.654
+44,What does “multimodal parsing” mean in your plan?,True,False,True,NOT_IN_MEMORY,0.0196988582611084,
+45,Why is auditability important for this system?,True,False,True,NOT_IN_MEMORY,4.619579076766968,7.108
+46,Why is reproducibility important for research evaluation?,True,False,True,NOT_IN_MEMORY,4.752778053283691,7.108
+47,How does the system choose between NOT_IN_MEMORY and answering?,True,True,False,"MindLayer is explicitly trained to answer questions only when relevant information exists in memory. If sufficient context is not available, the system responds with a refusal rather than hallucinating an answer.",7.601194858551025,7.108
+48,What similarity threshold gating are you using (conceptually)?,True,False,True,NOT_IN_MEMORY,5.181220054626465,11.88
+49,Why can weak retrieval cause hallucinations?,True,False,True,NOT_IN_MEMORY,4.944525957107544,8.061
+50,What is the role of LoRA fine-tuning in your project?,True,False,True,NOT_IN_MEMORY,4.9633378982543945,7.108
+51,Why use a smaller model with LoRA on a Mac?,True,False,True,NOT_IN_MEMORY,5.188775062561035,11.738
+52,What was the base model you tested with MLX?,True,False,True,NOT_IN_MEMORY,0.025010347366333008,
+53,What did the anti-hallucination test verify?,True,False,True,NOT_IN_MEMORY,0.006060123443603516,
+54,What did the summarization test verify?,True,False,True,NOT_IN_MEMORY,0.006609916687011719,
+55,What is the main use case: “What have I written about X over 6 months?” enabling?,True,True,False,"MindLayer ingests documents such as PDFs, text notes, and written journals",6.179639101028442,8.635
+56,What is meant by “longitudinal analysis” in MindLayer?,True,False,True,NOT_IN_MEMORY,5.5911033153533936,7.108
+57,What is meant by “pattern detection” in user writing?,True,False,True,NOT_IN_MEMORY,5.2128050327301025,8.127
+58,What is the high-level methodology list (ingestion → parsing → embeddings → storage → query → reasoning)?,True,True,False,ingestion → storage,5.471482038497925,15.424
+59,What is the core “second brain” value proposition?,True,True,False,grounded intelligence,4.560588121414185,7.108
+60,Who is the CEO of Apple?,False,False,True,NOT_IN_MEMORY,4.954341173171997,7.108
+61,What is the capital of Brazil?,False,False,True,NOT_IN_MEMORY,4.723568916320801,7.108
+62,Who won the FIFA World Cup 2022?,False,False,True,NOT_IN_MEMORY,0.014750957489013672,
+63,What is the current price of Bitcoin today?,False,False,True,NOT_IN_MEMORY,4.813279867172241,7.108
+64,Who is the Prime Minister of the UK right now?,False,False,True,NOT_IN_MEMORY,4.872590065002441,7.108
+65,What is the weather in New York today?,False,False,True,NOT_IN_MEMORY,4.6710851192474365,7.108
+66,What is the square root of 987654?,False,False,True,NOT_IN_MEMORY,5.313665151596069,7.108
+67,Give me the recipe for biryani.,False,False,True,NOT_IN_MEMORY,0.03320026397705078,
+68,Who discovered penicillin?,False,False,True,NOT_IN_MEMORY,0.0065958499908447266,
+69,What is the full form of CPU?,False,False,True,NOT_IN_MEMORY,5.870715856552124,7.108
+70,What year did the Titanic sink?,False,False,True,NOT_IN_MEMORY,0.020756959915161133,
+71,Who is the founder of Tesla?,False,False,True,NOT_IN_MEMORY,5.213469982147217,7.108
+72,What is the population of India in 2025?,False,False,True,NOT_IN_MEMORY,5.197953939437866,7.108
+73,What is the deepest ocean trench?,False,False,True,NOT_IN_MEMORY,5.6595330238342285,7.108
+74,What are the symptoms of dengue?,False,False,True,NOT_IN_MEMORY,0.013431787490844727,
+75,Solve: 47×83.,False,False,True,NOT_IN_MEMORY,0.00977468490600586,
+76,Translate “good morning” into Japanese.,False,False,True,NOT_IN_MEMORY,0.005544900894165039,
+77,What is the latest iPhone model?,False,False,True,NOT_IN_MEMORY,5.089345932006836,7.108
+78,What is the GDP of France?,False,False,True,NOT_IN_MEMORY,5.0752270221710205,7.108
+79,Name 10 planets in the solar system.,False,False,True,NOT_IN_MEMORY,5.698861122131348,7.108
+80,Who is the CEO of Google?,False,False,True,NOT_IN_MEMORY,5.0685529708862305,7.108
+81,What is the formula for variance?,False,False,True,NOT_IN_MEMORY,5.457085132598877,7.108
+82,Define Keynesian economics.,False,False,True,NOT_IN_MEMORY,0.01104593276977539,
+83,Write a poem about love.,False,False,True,NOT_IN_MEMORY,5.692620038986206,8.059
+84,Tell me a joke.,False,False,True,NOT_IN_MEMORY,5.994579076766968,8.059
+85,Explain quantum entanglement.,False,False,True,NOT_IN_MEMORY,0.011348962783813477,
+86,What is the difference between HTTP and HTTPS?,False,False,True,NOT_IN_MEMORY,5.886029243469238,7.108
+87,Give me Python code to reverse a list.,False,False,True,NOT_IN_MEMORY,6.056241035461426,10.972
+88,What is the boiling point of mercury?,False,False,True,NOT_IN_MEMORY,5.1594297885894775,7.108
+89,Who is the author of “The Alchemist”?,False,False,True,NOT_IN_MEMORY,5.0120158195495605,7.108
+90,What is the current exchange rate USD to INR?,False,False,True,NOT_IN_MEMORY,5.320522785186768,10.021
+91,When is the next solar eclipse?,False,False,True,NOT_IN_MEMORY,5.202965021133423,7.108
+92,List the best tourist places in Paris.,False,False,True,NOT_IN_MEMORY,0.009985208511352539,
+93,What are the causes of World War 1?,False,False,True,NOT_IN_MEMORY,0.009684085845947266,
+94,What is the chemical formula of glucose?,False,False,True,NOT_IN_MEMORY,4.997375965118408,7.108
+95,Who is the richest person in the world right now?,False,False,True,NOT_IN_MEMORY,4.984472036361694,7.108
+96,What is the next SpaceX launch date?,False,False,True,NOT_IN_MEMORY,4.925163984298706,7.108
+97,Who won the latest IPL season?,False,False,True,NOT_IN_MEMORY,0.030011892318725586,
+98,What is the newest version of Python?,False,False,True,NOT_IN_MEMORY,5.287073850631714,7.108
+99,What are today’s top tech news headlines?,False,False,True,NOT_IN_MEMORY,0.013366937637329102,

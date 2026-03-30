@@ -1,9 +1,11 @@
 import os
 import numpy as np
 
-# Suppress TensorFlow warnings
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+# Disable TensorFlow warnings (in case it's imported elsewhere)
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+os.environ['TRANSFORMERS_NO_TF'] = '1'
 
+# Import sentence_transformers (uses PyTorch, not TensorFlow)
 from sentence_transformers import SentenceTransformer
 
 model = SentenceTransformer("all-MiniLM-L6-v2")
@@ -14,24 +16,48 @@ vectors = []
 metadata_store = []
 
 def embed_and_store(content, metadata):
-    # Split content into chunks
-    chunks = [content[i:i+512] for i in range(0, len(content), 512)]
+    """
+    Embed content and store in memory.
+    Returns the number of chunks stored.
+    """
+    # Validate content
+    if not content or not content.strip():
+        print(f"Warning: Empty content received for file {metadata.get('filename', 'unknown')}")
+        return 0
+    
+    # Split content into chunks (512 characters each, with some overlap)
+    chunk_size = 512
+    chunks = []
+    for i in range(0, len(content), chunk_size):
+        chunk = content[i:i+chunk_size].strip()
+        if chunk:  # Only add non-empty chunks
+            chunks.append(chunk)
     
     if not chunks:
+        print(f"Warning: No valid chunks created from content for file {metadata.get('filename', 'unknown')}")
+        print(f"Content length: {len(content)}")
         return 0
-        
-    vectors_chunks = model.encode(chunks)
     
-    # Store vectors and metadata
-    for i, (chunk, vector) in enumerate(zip(chunks, vectors_chunks)):
-        vectors.append(vector)
-        metadata_store.append({
-            "text": chunk,
-            "metadata": metadata,
-            "vector_index": len(vectors) - 1
-        })
-
-    return len(chunks)
+    try:
+        # Encode chunks to vectors
+        vectors_chunks = model.encode(chunks)
+        
+        # Store vectors and metadata
+        for i, (chunk, vector) in enumerate(zip(chunks, vectors_chunks)):
+            vectors.append(vector)
+            metadata_store.append({
+                "text": chunk,
+                "metadata": metadata,
+                "vector_index": len(vectors) - 1
+            })
+        
+        print(f"Successfully embedded {len(chunks)} chunks for file {metadata.get('filename', 'unknown')}")
+        print(f"Total chunks in memory: {len(vectors)}")
+        
+        return len(chunks)
+    except Exception as e:
+        print(f"Error embedding content: {e}")
+        return 0
 
 def search_similar(query, top_k=5):
     if not vectors:
@@ -63,9 +89,14 @@ def search_memory(query, top_k=5):
 
 def get_memory_stats():
     """Get statistics about the current memory"""
+    filenames = [item["metadata"].get("filename", "unknown") for item in metadata_store]
+    unique_files = set(filenames)
+    
     return {
         "total_chunks": len(vectors),
-        "total_documents": len(set(item["metadata"].get("filename", "unknown") for item in metadata_store)),
-        "has_memory": len(vectors) > 0
+        "total_documents": len(unique_files),
+        "has_memory": len(vectors) > 0,
+        "filenames": list(unique_files),
+        "chunks_per_file": {filename: filenames.count(filename) for filename in unique_files}
     }
 

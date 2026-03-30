@@ -1,0 +1,5 @@
+{"id":"q1","query":"What is MindLayer?","label":"in_memory","gold_answer":"privacy-first personal AI system designed to act as a lifelong digital memory","gold_doc_ids":["doc_450df4242f90d6c6"],"gold_chunk_ids":["ch_d12a93e4c8e22e4f"],"gold_evidence_phrases":["privacy-first personal AI system","lifelong digital memory"]}
+{"id":"q2","query":"What does MindLayer do if the answer is missing from memory?","label":"in_memory","gold_answer":"NOT_IN_MEMORY","gold_doc_ids":["doc_450df4242f90d6c6"],"gold_evidence_phrases":["responds with a refusal","rather than hallucinating an answer"]}
+{"id":"q3","query":"Who is the CEO of Apple?","label":"not_in_memory","gold_answer":"NOT_IN_MEMORY","gold_doc_ids":[]}
+{"id":"q4","query":"Summarize MindLayer in one line.","label":"in_memory","gold_answer":"privacy-first personal AI system designed to act as a lifelong digital memory","gold_doc_ids":["doc_450df4242f90d6c6"],"gold_chunk_ids":["ch_d12a93e4c8e22e4f"],"gold_evidence_phrases":["privacy-first personal AI system","lifelong digital memory"]}
+{"id":"q5","query":"What is the capital of France?","label":"not_in_memory","gold_answer":"NOT_IN_MEMORY","gold_doc_ids":[]}
