@@ -37,6 +37,10 @@ venv/
 .env.test.local
 .env.production.local
 
+# Local backend artifacts (uploads, indexes, sqlite — regenerate locally)
+backend/memory_store/
+backend/data/
+
 # Node.js
 node_modules/
 npm-debug.log*
