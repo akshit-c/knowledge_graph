@@ -45,8 +45,8 @@ It is an advanced personal knowledge management system that goes beyond traditio
 
 1. **Clone the repository:**
 ```bash
-git clone https://github.com/akshit-c/MindLayer.git
-cd mindlayer
+git clone https://github.com/akshit-c/knowledge_graph
+cd knowledge_graph
 ```
 
 2. **Set up the Backend:**
