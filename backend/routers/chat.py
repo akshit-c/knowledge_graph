@@ -69,6 +69,25 @@ def chat(req: ChatRequest):
         if not q:
             return {"answer": "", "sources": [], "trace": {"reason": "empty_message"}}
 
+        # Modes:
+        # - baseline: FAISS-only retrieval + always call the LLM (no refusal gate)
+        # - hybrid: FAISS+KG retrieval + always call the LLM (no refusal gate)
+        # - calibrated: FAISS+KG retrieval + refusal gate using the calibrated threshold
+        mode = (req.mode or "calibrated").strip().lower()
+        if mode in {"full"}:
+            mode = "calibrated"
+        if mode in {"faiss_only", "faiss-only", "baseline", "baseline_faiss"}:
+            mode = "baseline"
+        if mode in {"hybrid", "hybrid_kg_faiss"}:
+            mode = "hybrid"
+        if mode in {"calibrated", "calib", "logreg", "refusal_gate"}:
+            mode = "calibrated"
+        if mode not in {"baseline", "hybrid", "calibrated"}:
+            mode = "calibrated"
+
+        use_kg = mode in {"hybrid", "calibrated"}
+        use_gate = mode == "calibrated"
+
         # -----------------------------
         # 1) Retrieve from FAISS + KG
         # -----------------------------
@@ -76,7 +95,7 @@ def chat(req: ChatRequest):
         kg_k = max(1, req.kg_k)
 
         faiss_results = memory_search.search(q, top_k=top_k)
-        kg_results = fetch_kg_context(question=q, k=kg_k, evidence_k=2)
+        kg_results = fetch_kg_context(question=q, k=kg_k, evidence_k=2) if use_kg else []
 
         # If nothing comes back at all, hard NOT_IN_MEMORY.
         if not faiss_results and not kg_results:
@@ -87,7 +106,7 @@ def chat(req: ChatRequest):
                     "reason": "no_retrieval_hits",
                     "faiss_results": 0,
                     "kg_claims": 0,
-                    "mode_used": "hybrid_kg_faiss",
+                    "mode_used": ("baseline_faiss" if not use_kg else "hybrid_kg_faiss"),
                 },
             }
 
@@ -168,7 +187,13 @@ def chat(req: ChatRequest):
                     "faiss_results": len(faiss_results),
                     "kg_claims": len(kg_results or []),
                     "max_support": max_support,
-                    "mode_used": "hybrid_kg_faiss_logreg_gate",
+                    "mode_used": (
+                        "baseline_faiss"
+                        if mode == "baseline"
+                        else "hybrid_kg_faiss_no_gate"
+                        if mode == "hybrid"
+                        else "hybrid_kg_faiss_logreg_gate"
+                    ),
                 },
             }
 
@@ -192,14 +217,21 @@ def chat(req: ChatRequest):
         if top_evidence:
             top_evidence[0]["kg_score"] = float(top_evidence[0].get("score", 0.0))
 
-        # Logistic gate over features derived from retrieval-only signals.
-        p, thr, ok_to_answer, feats = gate_decision(q, trace, top_evidence)
-        trace["gate_p_answerable"] = p
-        trace["gate_threshold"] = thr
-        trace["gate_features"] = feats
-        trace["gate_policy"] = "fp_budget=1_aggressive"
+        # Optional logistic refusal gate over features derived from retrieval-only signals.
+        ok_to_answer = True
+        if use_gate:
+            p, thr, ok_to_answer, feats = gate_decision(q, trace, top_evidence)
+            trace["gate_p_answerable"] = p
+            trace["gate_threshold"] = thr
+            trace["gate_features"] = feats
+            trace["gate_policy"] = "fp_budget=1_aggressive"
+        else:
+            trace["gate_p_answerable"] = None
+            trace["gate_threshold"] = None
+            trace["gate_features"] = {}
+            trace["gate_policy"] = "no_refusal_gate"
 
-        if not ok_to_answer:
+        if use_gate and not ok_to_answer:
             # Refuse without calling MLX; still return top evidence for audits.
             sources_payload: List[Dict[str, Any]] = []
             for ev in top_evidence:
@@ -230,6 +262,17 @@ def chat(req: ChatRequest):
         # -----------------------------
         # 5) Extract-then-answer prompting (only if gate passes)
         # -----------------------------
+        trace["mode_used"] = (
+            "baseline_faiss" if mode == "baseline" else
+            "hybrid_kg_faiss_no_gate" if mode == "hybrid" else
+            "hybrid_kg_faiss_logreg_gate"
+        )
+
+        if not use_gate:
+            trace["gate_reason"] = "no_refusal_gate_allow"
+        else:
+            trace["gate_reason"] = "logreg_allow"
+
         context = _build_evidence_context(top_evidence)
 
         prompt = f"""
@@ -267,9 +310,6 @@ QUESTION:
                 "kg_score": ev.get("kg_score"),
             }
             sources_payload.append(payload)
-
-        trace["gate_reason"] = "logreg_allow"
-        trace["mode_used"] = "hybrid_kg_faiss_logreg_gate"
 
         return {
             "answer": answer,

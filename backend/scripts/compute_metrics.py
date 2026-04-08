@@ -1,6 +1,8 @@
 import json
 import statistics
 from pathlib import Path
+from typing import Optional
+import numpy as np
 from sklearn.metrics import (
     confusion_matrix,
     precision_score,
@@ -8,7 +10,9 @@ from sklearn.metrics import (
     f1_score,
     roc_auc_score,
     roc_curve,
-    precision_recall_curve
+    precision_recall_curve,
+    brier_score_loss,
+    log_loss,
 )
 
 INP = Path("backend/eval/results_100.jsonl")
@@ -16,6 +20,7 @@ INP = Path("backend/eval/results_100.jsonl")
 y_true = []   # 1 = answerable, 0 = NOT_IN_MEMORY
 y_pred = []   # 1 = answered, 0 = NOT_IN_MEMORY
 scores = []   # confidence proxy (kg_score or similarity)
+gate_probs = []  # probability query is answerable (trace.gate_p_answerable)
 latencies = []
 
 HR_hits = []
@@ -33,14 +38,24 @@ with INP.open("r", encoding="utf-8") as f:
         y_true.append(is_answerable)
         y_pred.append(predicted_answerable)
 
-        # score proxy for ROC (use kg_score if exists)
+        # score proxy for ROC (prefer calibrated gate prob when available)
         kg_score = 0.0
         try:
             if ex.get("sources"):
                 kg_score = ex["sources"][0].get("kg_score", 0.0)
         except Exception:
             pass
-        scores.append(kg_score)
+
+        trace = ex.get("trace") or {}
+        gp = trace.get("gate_p_answerable", None)
+        if gp is not None:
+            try:
+                gp = float(gp)
+            except Exception:
+                gp = None
+
+        gate_probs.append(gp)
+        scores.append(gp if gp is not None else kg_score)
 
         latencies.append(ex.get("latency_s", 0.0))
 
@@ -65,6 +80,58 @@ lat_mean = statistics.mean(latencies)
 lat_p95 = sorted(latencies)[int(0.95 * len(latencies))]
 
 cm = confusion_matrix(y_true, y_pred)
+
+def expected_calibration_error(
+    y_true_list: list[int],
+    y_prob_list: list[float],
+    n_bins: int = 10,
+) -> float:
+    """
+    ECE (expected calibration error) with uniform probability bins.
+    ECE = sum_b (|B|/N) * |acc(B) - conf(B)|.
+    """
+    y_true_arr = np.asarray(y_true_list, dtype=float)
+    y_prob_arr = np.asarray(y_prob_list, dtype=float)
+    # Clamp away from exact 0/1 for numerical stability.
+    y_prob_arr = np.clip(y_prob_arr, 1e-6, 1.0 - 1e-6)
+
+    bin_edges = np.linspace(0.0, 1.0, n_bins + 1)
+    ece = 0.0
+    n = len(y_true_arr)
+    if n == 0:
+        return 0.0
+
+    for i in range(n_bins):
+        lo = bin_edges[i]
+        hi = bin_edges[i + 1]
+        if i == n_bins - 1:
+            mask = (y_prob_arr >= lo) & (y_prob_arr <= hi)
+        else:
+            mask = (y_prob_arr >= lo) & (y_prob_arr < hi)
+        if not np.any(mask):
+            continue
+        acc = float(y_true_arr[mask].mean())
+        conf = float(y_prob_arr[mask].mean())
+        ece += float(mask.mean()) * abs(acc - conf)
+
+    return float(ece)
+
+
+calib_y_true: list[int] = []
+calib_y_prob: list[float] = []
+for yt, gp in zip(y_true, gate_probs):
+    if gp is None:
+        continue
+    calib_y_true.append(int(yt))
+    calib_y_prob.append(float(gp))
+
+ece_val: Optional[float] = None
+log_loss_val: Optional[float] = None
+brier_val: Optional[float] = None
+if calib_y_prob:
+    ece_val = expected_calibration_error(calib_y_true, calib_y_prob, n_bins=10)
+    brier_val = float(brier_score_loss(calib_y_true, calib_y_prob))
+    log_loss_val = float(log_loss(calib_y_true, calib_y_prob, labels=[0, 1]))
 
 print("\n=== CORE METRICS ===")
 print("RA (Refusal Accuracy):", round(RA, 3))
@@ -96,6 +163,9 @@ out.write_text(json.dumps({
     "recall": recall,
     "f1": f1,
     "roc_auc": roc_auc,
+    "brier_score": brier_val,
+    "ece": ece_val,
+    "log_loss": log_loss_val,
     "latency_mean": lat_mean,
     "latency_p95": lat_p95
 }, indent=2))

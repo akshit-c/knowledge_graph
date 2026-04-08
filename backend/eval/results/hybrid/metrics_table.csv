@@ -1,0 +1,14 @@
+Metric,Mean,CI95
+HR@k,0.6,"[0.200, 1.000]"
+RA,1.0,"[1.000, 1.000]"
+GAA,0.6,"[0.200, 1.000]"
+EM (exact),0.4,-
+F1 (token overlap),0.722167487684729,-
+Evidence Precision,0.14666666666666667,-
+Evidence Recall,0.6,-
+Evidence F1,0.23333333333333334,-
+Faithfulness (token coverage),0.9857142857142858,-
+Attribution Accuracy,0.14666666666666667,-
+Hallucination Rate (lower is better),0.0,-
+"Latency (mean, s)",12.117290592193603,-
+"Latency (p95, s)",16.41880292892456,-

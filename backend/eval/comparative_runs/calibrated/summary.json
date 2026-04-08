@@ -1,0 +1,22 @@
+{
+  "N": 5,
+  "HR@k_mean": 0.6,
+  "RA_mean": 1.0,
+  "GAA_mean": 0.6,
+  "EM_mean": 0.4,
+  "F1_token_overlap_mean": 0.722167487684729,
+  "Evidence_precision_mean": 0.14666666666666667,
+  "Evidence_recall_mean": 0.6,
+  "Evidence_f1_mean": 0.23333333333333334,
+  "Faithfulness_mean": 0.9857142857142858,
+  "Attribution_accuracy_mean": 0.14666666666666667,
+  "Hallucination_rate_mean": 0.0,
+  "Latency_mean_s": 11.396028804779053,
+  "Latency_p95_s": 13.881674480438232,
+  "HR@k_CI95_low": 0.2,
+  "HR@k_CI95_high": 1.0,
+  "RA_CI95_low": 1.0,
+  "RA_CI95_high": 1.0,
+  "GAA_CI95_low": 0.2,
+  "GAA_CI95_high": 1.0
+}
