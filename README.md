@@ -1,10 +1,10 @@
-# MindLayer
+# Knowledge Graph Based Personlised Learning & Logical Decision Making
 
 A personal AI memory system that provides ownership of your digital memory with reflection over time, emotional intelligence, and semantic understanding.
 
 ## Overview
 
-MindLayer is an advanced personal knowledge management system that goes beyond traditional note-taking applications. Unlike ChatGPT or Notion AI, MindLayer provides complete ownership of your memory with sophisticated reflection capabilities, emotional intelligence, and semantic understanding.
+It is an advanced personal knowledge management system that goes beyond traditional note-taking applications. Unlike ChatGPT or Notion AI, MindLayer provides complete ownership of your memory with sophisticated reflection capabilities, emotional intelligence, and semantic understanding.
 
 ## Key Features
 
