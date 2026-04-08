@@ -1,4 +1,4 @@
-# Knowledge Graph Based Personlised Learning & Logical Decision Making
+# Knowledge Graph Based Personalized Learning & Logical Decision Making
 
 A personal AI memory system that provides ownership of your digital memory with reflection over time, emotional intelligence, and semantic understanding.
 
